@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using rpg_webapi.Dtos.Character;
 using rpg_webapi.Models;
 using rpg_webapi.Services.CharacterService;
 
@@ -31,8 +32,24 @@ namespace rpg_webapi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCharacter(Character newCharacter){           
+        public async Task<IActionResult> AddCharacter(AddCharacterDto newCharacter){           
             return Ok(await _characterService.AddCharacter(newCharacter));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCharacter(UpdateCharacterDto updatedCharacter){           
+            ServiceResponse<GetCharacterDto> response = await _characterService.UpdateCharacter(updatedCharacter);
+            if (response.Data == null) return NotFound(response);
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id) {
+            ServiceResponse<List<GetCharacterDto>> response = await _characterService.DeleteCharacter(id);
+            if (response.Data == null) return NotFound(response);
+
+            return Ok(response);
         }
         
     }

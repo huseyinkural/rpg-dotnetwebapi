@@ -1,0 +1,16 @@
+using AutoMapper;
+using rpg_webapi.Dtos.Character;
+using rpg_webapi.Models;
+
+namespace rpg_webapi
+{
+    public class AutoMapperProfile : Profile
+    {
+        public AutoMapperProfile()
+        {
+            CreateMap<Character,GetCharacterDto>();
+            CreateMap<AddCharacterDto,Character>();
+        }
+        
+    }
+}
