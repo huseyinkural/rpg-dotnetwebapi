@@ -52,10 +52,10 @@ namespace rpg_webapi.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters(int userId)
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            List<Character> dbCharacters = await  _context.Characters.ToListAsync();
+            List<Character> dbCharacters = await  _context.Characters.Where(c => c.User.Id == userId).ToListAsync();
             serviceResponse.Data = (dbCharacters.Select(c => _mapper.Map<GetCharacterDto>(c))).ToList();
             return serviceResponse;
         }
