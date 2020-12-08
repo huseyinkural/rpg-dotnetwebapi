@@ -1,5 +1,6 @@
 using AutoMapper;
 using rpg_webapi.Dtos.Character;
+using rpg_webapi.Dtos.Weapon;
 using rpg_webapi.Models;
 
 namespace rpg_webapi
@@ -10,6 +11,7 @@ namespace rpg_webapi
         {
             CreateMap<Character,GetCharacterDto>();
             CreateMap<AddCharacterDto,Character>();
+            CreateMap<Weapon,GetWeaponDto>();
         }
         
     }
