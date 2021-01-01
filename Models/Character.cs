@@ -14,6 +14,11 @@ namespace rpg_webapi.Models
         public User User { get; set; }
         public Weapon Weapon { get; set; }
         public List<CharacterSkill> CharacterSkills { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
+
+        
 
     }
 }
