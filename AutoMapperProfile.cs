@@ -1,6 +1,7 @@
 using System.Linq;
 using AutoMapper;
 using rpg_webapi.Dtos.Character;
+using rpg_webapi.Dtos.Fight;
 using rpg_webapi.Dtos.Skill;
 using rpg_webapi.Dtos.Weapon;
 using rpg_webapi.Models;
@@ -16,6 +17,7 @@ namespace rpg_webapi
             CreateMap<AddCharacterDto,Character>();
             CreateMap<Weapon,GetWeaponDto>();
             CreateMap<Skill, GetSkillDto>();
+            CreateMap<Character, HighScoreDto>();
         }
         
     }
