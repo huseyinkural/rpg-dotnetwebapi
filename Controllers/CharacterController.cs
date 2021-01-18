@@ -10,7 +10,7 @@ using rpg_webapi.Services.CharacterService;
 
 namespace rpg_webapi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Player,Admin")]
     [ApiController]
     [Route("[controller]")]
     public class CharacterController : ControllerBase
