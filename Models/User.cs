@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace rpg_webapi.Models
 {
@@ -10,8 +9,6 @@ namespace rpg_webapi.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public List<Character> Characters { get; set; }
-        [Required]
-        public string Role { get; set; }
         
     }
 }

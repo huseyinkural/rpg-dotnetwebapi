@@ -109,12 +109,6 @@ namespace rpg_webapi.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("Player");
-
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
