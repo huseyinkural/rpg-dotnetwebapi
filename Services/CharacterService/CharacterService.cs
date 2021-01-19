@@ -26,6 +26,7 @@ namespace rpg_webapi.Services.CharacterService
         }
 
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+        private string GetUserRole() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
         public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
@@ -72,7 +73,13 @@ namespace rpg_webapi.Services.CharacterService
         public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
             ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
-            List<Character> dbCharacters = await  _context.Characters
+            List<Character> dbCharacters = 
+            GetUserRole().Equals("Admin") ? 
+            await  _context.Characters
+                .Include(c => c.Weapon)
+                .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
+                .ToListAsync() :
+            await  _context.Characters
                 .Include(c => c.Weapon)
                 .Include(c => c.CharacterSkills).ThenInclude(cs => cs.Skill)
                 .Where(c => c.User.Id == GetUserId()).ToListAsync();
